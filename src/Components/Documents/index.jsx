@@ -15,15 +15,6 @@ import './style.css'
 const Documents = ({ onSelectDocument }) => {
     const documents = [
         {
-            image: SafeAgreementIcon,
-            title: 'Safe agreement',
-            description:
-                'Woooow! Congrats on your first investors! Lets get your SAFE ready in minutes, get some funding and get back to work. This are just the first steps. Round A awaits ahead. Click the button below and star drafting!',
-            buttonTitle: 'Select',
-            buttonDisabled: false,
-            onClick: onSelectDocument,
-        },
-        {
             image: FoundersAgreementIcon,
             title: 'Founders agreement',
             description:
@@ -31,6 +22,15 @@ const Documents = ({ onSelectDocument }) => {
             buttonTitle: 'Soon',
             buttonDisabled: true,
             onClick: () => console.log('Not enabled'),
+        },
+        {
+            image: SafeAgreementIcon,
+            title: 'Safe agreement',
+            description:
+                'Woooow! Congrats on your first investors! Lets get your SAFE ready in minutes, get some funding and get back to work. This are just the first steps. Round A awaits ahead. Click the button below and star drafting!',
+            buttonTitle: 'Select',
+            buttonDisabled: false,
+            onClick: onSelectDocument,
         },
         {
             image: TermsAgreementIcon,
