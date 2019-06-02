@@ -15,12 +15,12 @@ const Layout = ({}) => {
     function handleSafeAgreement(value) {
         setSafeAgreementAnswers(value)
         setShowSafeAgreement(false)
+        setShowSafeAgreementPreview(true)
     }
 
     function handleDocumentSelect() {
         setShowSafeAgreement(true)
         setShowShowHeader(false)
-        setShowSafeAgreementPreview(true)
     }
 
     return (
