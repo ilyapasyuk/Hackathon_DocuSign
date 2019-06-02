@@ -6,7 +6,20 @@ import Documents from '../Documents'
 import './style.css'
 
 const Layout = ({}) => {
-    const [isShowFoundersAgreement, setShowFoundersAgreement] = useState(false)
+    const [isShowHeader, setShowShowHeader] = useState(true)
+    const [isShowSafeAgreement, setShowSafeAgreement] = useState(false)
+    const [optionsSafeAgreement, setSafeAgreementAnswers] = useState(undefined)
+
+    function handleSafeAgreement(value) {
+        setSafeAgreementAnswers(value)
+        setShowSafeAgreement(false)
+    }
+
+    function handleDocumentSelect() {
+        setShowSafeAgreement(true)
+        setShowShowHeader(false)
+    }
+
     return (
         <>
             <AppBar position="static" className="Layout__appbar">
@@ -15,7 +28,7 @@ const Layout = ({}) => {
                 </Toolbar>
             </AppBar>
             <Container>
-                {!isShowFoundersAgreement && (
+                {isShowHeader && (
                     <>
                         <Typography variant="h2" color="primary" align="center" gutterBottom>
                             Free legal documents for startups
@@ -24,11 +37,13 @@ const Layout = ({}) => {
                             Choose a document to draft
                         </Typography>
 
-                        <Documents onSelectDocument={() => setShowFoundersAgreement(true)} />
+                        <Documents onSelectDocument={() => handleDocumentSelect()} />
                     </>
                 )}
 
-                {isShowFoundersAgreement && <SafeAgreement />}
+                {isShowSafeAgreement && (
+                    <SafeAgreement onAnswerSelected={v => handleSafeAgreement(v)} />
+                )}
             </Container>
         </>
     )

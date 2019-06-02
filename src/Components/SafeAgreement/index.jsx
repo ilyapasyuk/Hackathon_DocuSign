@@ -36,16 +36,7 @@ const defaultOptions = {
     STEP_4: 'option1',
 }
 
-function getSteps() {
-    return [
-        'Choose type of your company:',
-        'Does your company have subsidiaries?',
-        'Choose type of SAFE:',
-        'Choose governing law of agreement (сommonly must be the same as main state of operations of your company):',
-    ]
-}
-
-const SafeAgreement = () => {
+const SafeAgreement = ({ onAnswerSelected }) => {
     window.document.title = 'Safe Agreement | DocuSign'
     useEffect(() => {
         return () => {
@@ -56,7 +47,12 @@ const SafeAgreement = () => {
     const [activeStep, setActiveStep] = useState(0)
     const [options, setOption] = useState(defaultOptions)
 
-    const steps = getSteps()
+    const steps = [
+        'Choose type of your company:',
+        'Does your company have subsidiaries?',
+        'Choose type of SAFE:',
+        'Choose governing law of agreement (сommonly must be the same as main state of operations of your company):',
+    ]
 
     function handleNext() {
         setActiveStep(prevActiveStep => prevActiveStep + 1)
@@ -66,15 +62,13 @@ const SafeAgreement = () => {
         setActiveStep(prevActiveStep => prevActiveStep - 1)
     }
 
-    function handleReset() {
-        setActiveStep(0)
+    function handleFinish() {
+        onAnswerSelected(options)
     }
 
     function handleChange(value) {
         setOption({ ...options, ...value })
     }
-
-    console.log('options', options)
 
     function getStepContent(step) {
         switch (step) {
@@ -208,14 +202,27 @@ const SafeAgreement = () => {
                                     >
                                         Back
                                     </Button>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleNext}
-                                        className={classes.button}
-                                    >
-                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                    </Button>
+                                    {activeStep !== steps.length - 1 && (
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={handleNext}
+                                            className={classes.button}
+                                        >
+                                            Next
+                                        </Button>
+                                    )}
+
+                                    {activeStep === steps.length - 1 && (
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={handleFinish}
+                                            className={classes.button}
+                                        >
+                                            Finish
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                         </StepContent>
