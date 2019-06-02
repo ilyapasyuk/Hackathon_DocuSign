@@ -1,7 +1,5 @@
 .SafeAgreementPreview__preview {
     padding: 20px;
-    height: calc(1000px - 100px);
-    overflow: auto;
 }
 
 .SafeAgreementPreview__sign {
