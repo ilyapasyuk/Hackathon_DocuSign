@@ -1,19 +1,11 @@
 import React, { useState } from 'react'
-import './style.css'
+import { hot } from 'react-hot-loader/root'
 import { Container, AppBar, Typography, Toolbar } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
 import SafeAgreement from '../SafeAgreement'
 import Documents from '../Documents'
-
-const useStyles = makeStyles({
-    card: {},
-    media: {
-        height: 140,
-    },
-})
+import './style.css'
 
 const Layout = ({}) => {
-    const [questions, setQuestions] = useState({})
     const [isShowFoundersAgreement, setShowFoundersAgreement] = useState(false)
     return (
         <>
@@ -36,10 +28,10 @@ const Layout = ({}) => {
                     </>
                 )}
 
-                {isShowFoundersAgreement && <SafeAgreement onAnswerSelect={setQuestions} />}
+                {isShowFoundersAgreement && <SafeAgreement />}
             </Container>
         </>
     )
 }
 
-export default Layout
+export default hot(Layout)
