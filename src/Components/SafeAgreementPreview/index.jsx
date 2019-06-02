@@ -33,7 +33,7 @@ const SafeAgreementPreview = ({ options }) => {
 
     return (
         <Grid container spacing={3}>
-            <Grid item xs={4}>
+            <Grid item md={4} xs={12}>
                 <TextField
                     id="outlined-name"
                     label="Name investor"
@@ -133,7 +133,7 @@ const SafeAgreementPreview = ({ options }) => {
                     Save document
                 </Button>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12} md={8}>
                 <Paper className="SafeAgreementPreview__preview" id="preview">
                     <p>
                         THIS INSTRUMENT AND ANY SECURITIES ISSUABLE PURSUANT HERETO HAVE NOT BEEN
