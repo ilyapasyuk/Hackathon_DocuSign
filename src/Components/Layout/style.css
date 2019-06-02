@@ -1,3 +1,14 @@
-html {
+html,
+body {
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    height: 100%;
+}
+
+.Layout__appbar {
+    margin-bottom: 40px;
+}
+
+img {
+    max-width: 100%;
 }
