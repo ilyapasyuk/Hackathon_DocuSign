@@ -7,9 +7,7 @@ import {
     StepContent,
     Button,
     RadioGroup,
-    RadioButton,
     FormControl,
-    FormLabel,
     FormControlLabel,
     Radio,
 } from '@material-ui/core'
@@ -31,6 +29,13 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
+const defaultOptions = {
+    STEP_1: 'option1',
+    STEP_2: 'option1',
+    STEP_3: 'option1',
+    STEP_4: 'option1',
+}
+
 function getSteps() {
     return [
         'Choose type of your company:',
@@ -49,6 +54,8 @@ const SafeAgreement = () => {
     })
     const classes = useStyles()
     const [activeStep, setActiveStep] = useState(0)
+    const [options, setOption] = useState(defaultOptions)
+
     const steps = getSteps()
 
     function handleNext() {
@@ -63,9 +70,11 @@ const SafeAgreement = () => {
         setActiveStep(0)
     }
 
-    function handleChange(event) {
-        console.log('event.target.value', event.target.value)
+    function handleChange(value) {
+        setOption({ ...options, ...value })
     }
+
+    console.log('options', options)
 
     function getStepContent(step) {
         switch (step) {
@@ -74,17 +83,21 @@ const SafeAgreement = () => {
                     <div>
                         <FormControl component="fieldset">
                             <RadioGroup
-                                name="gender1"
+                                name="step1"
                                 className={classes.group}
-                                value={'female'}
-                                onChange={handleChange}
+                                value={options.STEP_1}
+                                onChange={e => handleChange({ STEP_1: e.target.value })}
                             >
                                 <FormControlLabel
-                                    value="female"
+                                    value="option1"
                                     control={<Radio />}
-                                    label="Delaware corporation I Common"
+                                    label="Delaware corporation | Common"
                                 />
-                                <FormControlLabel value="male" control={<Radio />} label="Other" />
+                                <FormControlLabel
+                                    value="option2"
+                                    control={<Radio />}
+                                    label="Other"
+                                />
                             </RadioGroup>
                         </FormControl>
                     </div>
@@ -94,13 +107,13 @@ const SafeAgreement = () => {
                     <div>
                         <FormControl component="fieldset">
                             <RadioGroup
-                                name="gender1"
+                                name="step2"
                                 className={classes.group}
-                                value={'female'}
-                                onChange={handleChange}
+                                value={options.STEP_2}
+                                onChange={e => handleChange({ STEP_2: e.target.value })}
                             >
-                                <FormControlLabel value="female" control={<Radio />} label="No" />
-                                <FormControlLabel value="male" control={<Radio />} label="Yes" />
+                                <FormControlLabel value="option1" control={<Radio />} label="No" />
+                                <FormControlLabel value="option2" control={<Radio />} label="Yes" />
                             </RadioGroup>
                         </FormControl>
                     </div>
@@ -110,28 +123,28 @@ const SafeAgreement = () => {
                     <div>
                         <FormControl component="fieldset">
                             <RadioGroup
-                                name="gender1"
+                                name="step3"
                                 className={classes.group}
-                                value={'female'}
-                                onChange={handleChange}
+                                value={options.STEP_3}
+                                onChange={e => handleChange({ STEP_3: e.target.value })}
                             >
                                 <FormControlLabel
-                                    value="female"
+                                    value="option1"
                                     control={<Radio />}
                                     label="Valuation cap, NO Discount I Most common"
                                 />
                                 <FormControlLabel
-                                    value="male"
+                                    value="option2"
                                     control={<Radio />}
                                     label="Discount, NO Valuation cap"
                                 />
                                 <FormControlLabel
-                                    value="male"
+                                    value="option3"
                                     control={<Radio />}
                                     label="Valuation cap AND Discount"
                                 />
                                 <FormControlLabel
-                                    value="male"
+                                    value="option4"
                                     control={<Radio />}
                                     label="MFN, NO Valuation cap, NO Discount"
                                 />
@@ -144,27 +157,31 @@ const SafeAgreement = () => {
                     <div>
                         <FormControl component="fieldset">
                             <RadioGroup
-                                name="gender1"
+                                name="step4"
                                 className={classes.group}
-                                value={'female'}
-                                onChange={handleChange}
+                                value={options.STEP_4}
+                                onChange={e => handleChange({ STEP_4: e.target.value })}
                             >
                                 <FormControlLabel
-                                    value="female"
+                                    value="option1"
                                     control={<Radio />}
                                     label="Laws of the State of California"
                                 />
                                 <FormControlLabel
-                                    value="male"
+                                    value="option2"
                                     control={<Radio />}
                                     label="Laws of the State of Delaware I Common compromise version"
                                 />
                                 <FormControlLabel
-                                    value="male"
+                                    value="option3"
                                     control={<Radio />}
                                     label="Laws of the State of New York I Common compromise version"
                                 />
-                                <FormControlLabel value="male" control={<Radio />} label="Other" />
+                                <FormControlLabel
+                                    value="option4"
+                                    control={<Radio />}
+                                    label="Other"
+                                />
                             </RadioGroup>
                         </FormControl>
                     </div>
