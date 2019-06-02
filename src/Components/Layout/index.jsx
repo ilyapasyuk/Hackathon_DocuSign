@@ -4,11 +4,13 @@ import { Container, AppBar, Typography, Toolbar } from '@material-ui/core'
 import SafeAgreement from '../SafeAgreement'
 import Documents from '../Documents'
 import './style.css'
+import SafeAgreementPreview from 'Components/SafeAgreementPreview'
 
 const Layout = ({}) => {
     const [isShowHeader, setShowShowHeader] = useState(true)
     const [isShowSafeAgreement, setShowSafeAgreement] = useState(false)
-    const [optionsSafeAgreement, setSafeAgreementAnswers] = useState(undefined)
+    const [isShowSafeAgreementPreview, setShowSafeAgreementPreview] = useState(false)
+    const [optionsSafeAgreement, setSafeAgreementAnswers] = useState({})
 
     function handleSafeAgreement(value) {
         setSafeAgreementAnswers(value)
@@ -18,6 +20,7 @@ const Layout = ({}) => {
     function handleDocumentSelect() {
         setShowSafeAgreement(true)
         setShowShowHeader(false)
+        setShowSafeAgreementPreview(true)
     }
 
     return (
@@ -43,6 +46,10 @@ const Layout = ({}) => {
 
                 {isShowSafeAgreement && (
                     <SafeAgreement onAnswerSelected={v => handleSafeAgreement(v)} />
+                )}
+
+                {isShowSafeAgreementPreview && (
+                    <SafeAgreementPreview options={optionsSafeAgreement} />
                 )}
             </Container>
         </>
