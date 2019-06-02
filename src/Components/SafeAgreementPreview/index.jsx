@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
-import { Grid, Paper, TextField, InputAdornment } from '@material-ui/core'
+import { Grid, Paper, TextField, InputAdornment, Button } from '@material-ui/core'
 import SignatureCanvas from 'react-signature-canvas'
+import domtoimage from 'dom-to-image'
+import { saveAs } from 'file-saver'
 import './style.css'
 
 const SafeAgreementPreview = ({ options }) => {
@@ -21,6 +23,12 @@ const SafeAgreementPreview = ({ options }) => {
 
     function setCompanySignHandler() {
         setCompanySign(companySignHandlerRef.current.getTrimmedCanvas().toDataURL('image/png'))
+    }
+
+    function saveImage() {
+        domtoimage.toBlob(document.getElementById('preview')).then(blob => {
+            saveAs(blob, 'document.png')
+        })
     }
 
     return (
@@ -86,7 +94,8 @@ const SafeAgreementPreview = ({ options }) => {
                     type="date"
                     defaultValue="2019-05-24"
                 />
-                <Paper className="SafeAgreementPreview__preview">
+                <br />
+                <Paper className="SafeAgreementPreview__sign">
                     Investor sign
                     <SignatureCanvas
                         penColor="black"
@@ -99,7 +108,8 @@ const SafeAgreementPreview = ({ options }) => {
                         backgroundColor="rgba(255,255,255,1)"
                     />
                 </Paper>
-                <Paper className="SafeAgreementPreview__preview">
+                <br />
+                <Paper className="SafeAgreementPreview__sign">
                     Company sign
                     <SignatureCanvas
                         penColor="black"
@@ -112,9 +122,19 @@ const SafeAgreementPreview = ({ options }) => {
                         backgroundColor="rgba(255,255,255,1)"
                     />
                 </Paper>
+                <br />
+                <Button
+                    fullWidth
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => saveImage()}
+                    size="large"
+                >
+                    Save document
+                </Button>
             </Grid>
             <Grid item xs={8}>
-                <Paper className="SafeAgreementPreview__preview">
+                <Paper className="SafeAgreementPreview__preview" id="preview">
                     <p>
                         THIS INSTRUMENT AND ANY SECURITIES ISSUABLE PURSUANT HERETO HAVE NOT BEEN
                         REGISTERED UNDER THE SECURITIES ACT OF 1933, AS AMENDED (THE “SECURITIES
