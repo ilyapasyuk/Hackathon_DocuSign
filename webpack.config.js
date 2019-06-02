@@ -84,7 +84,6 @@ const config = {
                 loader: 'svg-inline-loader',
                 include: [
                     path.resolve(__dirname, 'src'),
-                    path.resolve(__dirname, 'node_modules/@propellerads/ui-components'),
                 ],
             },
             {
@@ -176,29 +175,11 @@ if (process.env.NODE_ENV === ENV.DEVELOPMENT) {
         test: /\.(scss|css)$/,
         include: [
             path.resolve(__dirname, 'src'),
-            path.resolve(__dirname, 'node_modules/@propellerads/ui-components'),
         ],
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader'],
     })
 
     config.plugins.push(new webpack.HotModuleReplacementPlugin())
-
-    config.devServer = {
-        contentBase: path.resolve(__dirname, 'dist'),
-        open: true,
-        hot: true,
-        proxy: {
-            '/': {
-                target: 'https://adplato.com/',
-                changeOrigin: true,
-            },
-        },
-        port: 8082,
-    }
-
-    config.devServer.host = '0.0.0.0'
-
-    config.devServer.allowedHosts = ['dev.pushsdk', 'watch.pushsdk', 'localhost']
 
     config.devtool = 'cheap-module-eval-source-map'
 
