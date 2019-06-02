@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Grid, Paper, TextField, InputAdornment } from '@material-ui/core'
+import SignatureCanvas from 'react-signature-canvas'
 import './style.css'
 
 const SafeAgreementPreview = ({ options }) => {
@@ -8,6 +9,20 @@ const SafeAgreementPreview = ({ options }) => {
     const [funding, setFunding] = useState(0)
     const [postFunding, setPostFunding] = useState(0)
     const [safeDate, setSafeDate] = useState('2020-01-01')
+    const [investorSign, setInvestorSign] = useState(null)
+    const [companySign, setCompanySign] = useState(null)
+
+    const investorSignHandlerRef = useRef(null)
+    const companySignHandlerRef = useRef(null)
+
+    function setInvestorSignHandler() {
+        setInvestorSign(investorSignHandlerRef.current.getTrimmedCanvas().toDataURL('image/png'))
+    }
+
+    function setCompanySignHandler() {
+        setCompanySign(companySignHandlerRef.current.getTrimmedCanvas().toDataURL('image/png'))
+    }
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={4}>
@@ -71,6 +86,32 @@ const SafeAgreementPreview = ({ options }) => {
                     type="date"
                     defaultValue="2019-05-24"
                 />
+                <Paper className="SafeAgreementPreview__preview">
+                    Investor sign
+                    <SignatureCanvas
+                        penColor="black"
+                        canvasProps={{
+                            width: 300,
+                            height: 200,
+                        }}
+                        ref={investorSignHandlerRef}
+                        onEnd={setInvestorSignHandler}
+                        backgroundColor="rgba(255,255,255,1)"
+                    />
+                </Paper>
+                <Paper className="SafeAgreementPreview__preview">
+                    Company sign
+                    <SignatureCanvas
+                        penColor="black"
+                        canvasProps={{
+                            width: 300,
+                            height: 200,
+                        }}
+                        ref={companySignHandlerRef}
+                        onEnd={setCompanySignHandler}
+                        backgroundColor="rgba(255,255,255,1)"
+                    />
+                </Paper>
             </Grid>
             <Grid item xs={8}>
                 <Paper className="SafeAgreementPreview__preview">
@@ -530,6 +571,11 @@ const SafeAgreementPreview = ({ options }) => {
                             <span className="SafeAgreementPreview__highlight">
                                 {companyName && companyName}
                             </span>
+                            {companySign && (
+                                <p>
+                                    <img src={companySign} alt="" />
+                                </p>
+                            )}
                             <br /> By:___________________________
                             <br />
                             Name:_____________________ <br />
@@ -541,6 +587,11 @@ const SafeAgreementPreview = ({ options }) => {
                             <span className="SafeAgreementPreview__highlight">
                                 {investorName && investorName}
                             </span>
+                            {investorSign && (
+                                <p>
+                                    <img src={investorSign} alt="" />
+                                </p>
+                            )}
                             <br /> By:___________________________
                             <br />
                             Name:_____________________ <br />
