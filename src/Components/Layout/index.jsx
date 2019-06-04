@@ -8,7 +8,7 @@ import SafeAgreementPreview from 'Components/SafeAgreementPreview'
 
 const Layout = ({}) => {
     const [isShowHeader, setShowShowHeader] = useState(true)
-    const [isShowSafeAgreement, setShowSafeAgreement] = useState(true)
+    const [isShowSafeAgreement, setShowSafeAgreement] = useState(false)
     const [isShowSafeAgreementPreview, setShowSafeAgreementPreview] = useState(false)
     const [optionsSafeAgreement, setSafeAgreementAnswers] = useState({})
 
