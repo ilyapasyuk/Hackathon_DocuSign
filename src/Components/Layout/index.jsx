@@ -7,9 +7,9 @@ import './style.css'
 import SafeAgreementPreview from 'Components/SafeAgreementPreview'
 
 const Layout = ({}) => {
-    const [isShowHeader, setShowShowHeader] = useState(true)
+    const [isShowHeader, setShowShowHeader] = useState(false)
     const [isShowSafeAgreement, setShowSafeAgreement] = useState(false)
-    const [isShowSafeAgreementPreview, setShowSafeAgreementPreview] = useState(false)
+    const [isShowSafeAgreementPreview, setShowSafeAgreementPreview] = useState(true)
     const [optionsSafeAgreement, setSafeAgreementAnswers] = useState({})
 
     function handleSafeAgreement(value) {
