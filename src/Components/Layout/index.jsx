@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { Container, AppBar, Typography, Toolbar } from '@material-ui/core'
+import SafeAgreementPreview from 'Components/SafeAgreementPreview'
 import SafeAgreement from '../SafeAgreement'
 import Documents from '../Documents'
 import './style.css'
-import SafeAgreementPreview from 'Components/SafeAgreementPreview'
 
-const Layout = ({}) => {
+const Layout = () => {
     const [isShowHeader, setShowShowHeader] = useState(true)
     const [isShowSafeAgreement, setShowSafeAgreement] = useState(false)
     const [isShowSafeAgreementPreview, setShowSafeAgreementPreview] = useState(false)
@@ -24,7 +24,7 @@ const Layout = ({}) => {
     }
 
     return (
-        <>
+        <Fragment>
             <AppBar position="static" className="Layout__appbar">
                 <Toolbar>
                     <Typography variant="h6">DocuSign Hackhaton</Typography>
@@ -32,7 +32,7 @@ const Layout = ({}) => {
             </AppBar>
             <Container>
                 {isShowHeader && (
-                    <>
+                    <Fragment>
                         <Typography variant="h2" color="primary" align="center" gutterBottom>
                             Free legal documents for startups
                         </Typography>
@@ -41,7 +41,7 @@ const Layout = ({}) => {
                         </Typography>
 
                         <Documents onSelectDocument={() => handleDocumentSelect()} />
-                    </>
+                    </Fragment>
                 )}
 
                 {isShowSafeAgreement && (
@@ -52,7 +52,7 @@ const Layout = ({}) => {
                     <SafeAgreementPreview options={optionsSafeAgreement} />
                 )}
             </Container>
-        </>
+        </Fragment>
     )
 }
 
