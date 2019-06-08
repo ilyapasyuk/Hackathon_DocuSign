@@ -3,13 +3,14 @@ import { hot } from 'react-hot-loader/root'
 import { Container, AppBar, Typography, Toolbar } from '@material-ui/core'
 import SafeAgreementPreview from 'Components/SafeAgreementPreview'
 import SafeAgreement from '../SafeAgreement'
-import Documents from '../Documents'
+import Documents, { DOCUMENT_CONSTANT } from '../Documents'
 import './style.css'
 
 const Layout = () => {
     const [isShowHeader, setShowShowHeader] = useState(true)
     const [isShowSafeAgreement, setShowSafeAgreement] = useState(false)
     const [isShowSafeAgreementPreview, setShowSafeAgreementPreview] = useState(false)
+    const [isShowFoundersAgreement, setShowFoundersAgreement] = useState(false)
     const [optionsSafeAgreement, setSafeAgreementAnswers] = useState({})
 
     function handleSafeAgreement(value) {
@@ -18,9 +19,19 @@ const Layout = () => {
         setShowSafeAgreementPreview(true)
     }
 
-    function handleDocumentSelect() {
-        setShowSafeAgreement(true)
+    function handleDocumentSelect(documentId) {
         setShowShowHeader(false)
+
+        switch (documentId) {
+            case DOCUMENT_CONSTANT.SAFE_AGREEMENT:
+                setShowSafeAgreement(true)
+                break
+            case DOCUMENT_CONSTANT.FOUNDERS_AGREEMENT:
+                setShowFoundersAgreement(true)
+                break
+            default:
+                break
+        }
     }
 
     return (
@@ -40,7 +51,9 @@ const Layout = () => {
                             Choose a document to draft
                         </Typography>
 
-                        <Documents onSelectDocument={() => handleDocumentSelect()} />
+                        <Documents
+                            onSelectDocument={documentId => handleDocumentSelect(documentId)}
+                        />
                     </Fragment>
                 )}
 
@@ -51,6 +64,8 @@ const Layout = () => {
                 {isShowSafeAgreementPreview && (
                     <SafeAgreementPreview options={optionsSafeAgreement} />
                 )}
+
+                {isShowFoundersAgreement && <div>1</div>}
             </Container>
         </Fragment>
     )

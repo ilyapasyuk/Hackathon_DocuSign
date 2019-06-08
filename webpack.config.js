@@ -48,9 +48,7 @@ const config = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                include: [
-                    path.resolve(__dirname, 'src'),
-                ],
+                include: [path.resolve(__dirname, 'src')],
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -64,9 +62,7 @@ const config = {
             },
             {
                 test: /\.html$/,
-                include: [
-                    path.resolve(__dirname, 'src'),
-                ],
+                include: [path.resolve(__dirname, 'src')],
                 use: [
                     {
                         loader: 'html-loader',
@@ -82,9 +78,7 @@ const config = {
             {
                 test: /\.svg$/,
                 loader: 'svg-inline-loader',
-                include: [
-                    path.resolve(__dirname, 'src'),
-                ],
+                include: [path.resolve(__dirname, 'src')],
             },
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -140,8 +134,6 @@ if (process.env.NODE_ENV === ENV.PRODUCTION) {
                     plugins: () => [Autoprefixer],
                 },
             },
-
-
         ],
     })
 
@@ -173,9 +165,7 @@ if (process.env.NODE_ENV === ENV.PRODUCTION) {
 if (process.env.NODE_ENV === ENV.DEVELOPMENT) {
     config.module.rules.push({
         test: /\.(scss|css)$/,
-        include: [
-            path.resolve(__dirname, 'src'),
-        ],
+        include: [path.resolve(__dirname, 'src')],
         use: ['style-loader', 'css-loader'],
     })
 
