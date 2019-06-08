@@ -4,6 +4,7 @@ import { Container, AppBar, Typography, Toolbar } from '@material-ui/core'
 import SafeAgreementPreview from 'Components/SafeAgreementPreview'
 import SafeAgreement from '../SafeAgreement'
 import FoundersAgreement from '../FoundersAgreement'
+import FoundersAgreementPreview from '../FoundersAgreementPreview'
 import Documents, { DOCUMENT_CONSTANT } from '../Documents'
 import './style.css'
 
@@ -12,12 +13,19 @@ const Layout = () => {
     const [isShowSafeAgreement, setShowSafeAgreement] = useState(false)
     const [isShowSafeAgreementPreview, setShowSafeAgreementPreview] = useState(false)
     const [isShowFoundersAgreement, setShowFoundersAgreement] = useState(false)
+    const [isShowFoundersAgreementPreview, setShowFoundersAgreementPreview] = useState(false)
     const [optionsSafeAgreement, setSafeAgreementAnswers] = useState({})
 
     function handleSafeAgreement(value) {
         setSafeAgreementAnswers(value)
         setShowSafeAgreement(false)
         setShowSafeAgreementPreview(true)
+    }
+
+    function handleFoundersAgreement(value) {
+        setSafeAgreementAnswers(value)
+        setShowFoundersAgreement(false)
+        setShowFoundersAgreementPreview(true)
     }
 
     function handleDocumentSelect(documentId) {
@@ -67,8 +75,10 @@ const Layout = () => {
                 )}
 
                 {isShowFoundersAgreement && (
-                    <FoundersAgreement onAnswerSelected={v => handleSafeAgreement(v)} />
+                    <FoundersAgreement onAnswerSelected={v => handleFoundersAgreement(v)} />
                 )}
+
+                {isShowFoundersAgreementPreview && <FoundersAgreementPreview />}
             </Container>
         </Fragment>
     )
