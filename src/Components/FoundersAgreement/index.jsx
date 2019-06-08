@@ -47,11 +47,88 @@ const SafeAgreement = ({ onAnswerSelected }) => {
     const [activeStep, setActiveStep] = useState(0)
     const [options, setOption] = useState(defaultOptions)
 
+    const STEP_1 = {
+        QUESTION: 'Have you already incorporated a company?',
+    }
+
+    const STEP_2 = {
+        QUESTION: 'Choose type of your company:',
+    }
+
+    const STEP_3 = {
+        QUESTION: 'Choose number of Founders:',
+    }
+    const STEP_4 = {
+        QUESTION: 'How will Founders pay for Company shares?',
+    }
+    const STEP_5 = {
+        QUESTION: 'Do Founders have an equal ownership in Company?',
+    }
+    const STEP_6 = {
+        QUESTION: 'Will a portion of shares be reserved for the future employees?',
+    }
+    const STEP_7 = {
+        QUESTION: 'Do you want to specify each Founder’s position/title?',
+    }
+    const STEP_8 = {
+        QUESTION: 'Do you want to add separate description of responsibilities for each Founder?',
+    }
+    const STEP_9 = {
+        QUESTION: 'Who will have a final vote over product/hiring process?',
+    }
+    const STEP_10 = {
+        QUESTION: 'Choose Founder 1 position/title:',
+    }
+    const STEP_11 = {
+        QUESTION: 'Choose Founder 2 position/title:',
+    }
+    const STEP_12 = {
+        QUESTION: 'Would you like to include a vesting schedule?',
+    }
+    const STEP_13 = {
+        QUESTION: 'Choose vesting schedule:',
+    }
+    const STEP_14 = {
+        QUESTION:
+            'Do you want to add Non-Competition clause (prohibiting Founders to work on the potential or existing competitors)?',
+    }
+    const STEP_15 = {
+        QUESTION: 'Choose period for non-competition after Founder’s departure from Company:',
+    }
+    const STEP_16 = {
+        QUESTION:
+            'Choose actions that require unanimous prior written approval of all Founders (recommended to choose all):',
+    }
+    const STEP_17 = {
+        QUESTION: 'Do you want to provide mediation as a means for resolving disputes?',
+    }
+    const STEP_18 = {
+        QUESTION: 'What would be the primary dispute resolution venue?',
+    }
+    const STEP_19 = {
+        QUESTION:
+            'Choose governing law of agreement (сommonly must be the same as main state of operations of your company):',
+    }
     const steps = [
-        'Choose type of your company:',
-        'Does your company have subsidiaries?',
-        'Choose type of SAFE:',
-        'Choose governing law of agreement (сommonly must be the same as main state of operations of your company):',
+        STEP_1.QUESTION,
+        STEP_2.QUESTION,
+        STEP_3.QUESTION,
+        STEP_4.QUESTION,
+        STEP_5.QUESTION,
+        STEP_6.QUESTION,
+        STEP_7.QUESTION,
+        STEP_8.QUESTION,
+        STEP_9.QUESTION,
+        STEP_10.QUESTION,
+        STEP_11.QUESTION,
+        STEP_12.QUESTION,
+        STEP_13.QUESTION,
+        STEP_14.QUESTION,
+        STEP_15.QUESTION,
+        STEP_16.QUESTION,
+        STEP_17.QUESTION,
+        STEP_18.QUESTION,
+        STEP_19.QUESTION,
     ]
 
     function handleNext() {

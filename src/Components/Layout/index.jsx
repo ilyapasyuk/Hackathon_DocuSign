@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader/root'
 import { Container, AppBar, Typography, Toolbar } from '@material-ui/core'
 import SafeAgreementPreview from 'Components/SafeAgreementPreview'
 import SafeAgreement from '../SafeAgreement'
+import FoundersAgreement from '../FoundersAgreement'
 import Documents, { DOCUMENT_CONSTANT } from '../Documents'
 import './style.css'
 
@@ -65,7 +66,9 @@ const Layout = () => {
                     <SafeAgreementPreview options={optionsSafeAgreement} />
                 )}
 
-                {isShowFoundersAgreement && <div>1</div>}
+                {isShowFoundersAgreement && (
+                    <FoundersAgreement onAnswerSelected={v => handleSafeAgreement(v)} />
+                )}
             </Container>
         </Fragment>
     )
