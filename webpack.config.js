@@ -12,7 +12,7 @@ const config = {
         app: './src/index.jsx',
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'public'),
         chunkFilename: '[name].[chunkhash].chunk.js',
         filename: '[name].js',
     },
